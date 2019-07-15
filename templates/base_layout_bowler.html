@@ -1,0 +1,76 @@
+{% load static from staticfiles %}
+<html>
+
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="icon" href={% static "webicon.ico" %} type="image/x-icon">
+    <!------ Include the above in your HEAD tag ---------->
+
+<html lang="en">
+
+    <meta charset="UTF-8">
+    	<div class="jumbotron jumbotron-fluid bg-info text-white">
+		<div class="container">
+            {% if user.is_authenticated %}
+		    <a href="{% url 'blrhome' %}"><img src={% static "bowling.png" %} height="50" width="50"/></a><br/>
+            {% else %}
+            <a href="{% url 'home' %}"><img src={% static "bowling.png" %} height="50" width="50"/></a><br/>
+            {% endif %}
+            <nav>
+                <ul class="nav nav-pills">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn btn-outline-light" data-toggle="dropdown" href="#" role="button">Stat Center</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'pstats' %}">Bowler</a>
+                                <a class="dropdown-item" href="{% url 'tstats' %}">Teams</a>
+                            </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'tsup' %}"><button class="btn btn-outline-light">Register Team</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="logout-link" action="{% url 'logout' %}" method="post">
+                            {%  csrf_token %}
+                            <button type="submit" class="btn btn-outline-light">Logout</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn btn-outline-light" data-toggle="dropdown" href="#" role="button">Login as</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'lglogin' %}">League</a>
+                                <a class="dropdown-item" href="{% url 'reflogin' %}">Referee</a>
+                                <a class="dropdown-item" href="{% url 'blrlogin' %}">Bowler</a>
+                            </div>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+			<h1 class="display-3">
+			{{ heading }}
+			</h1>
+		</div>
+	</div>
+    <title>{{ title }}</title>
+</html>
+<body>
+    {% block content %}
+
+    {% endblock %}
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+</body>

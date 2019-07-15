@@ -1,0 +1,11 @@
+{% extends 'base_layout_bowler.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <form class="site-form" action="{% url 'bsup' %}" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}<br/>
+            <input type="submit" class="btn btn-primary" value="Create Profile">
+        </form>
+    </div>
+{% endblock %}

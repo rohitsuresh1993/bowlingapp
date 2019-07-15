@@ -1,0 +1,11 @@
+{% extends 'base_layout_referee.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <form class="site-form" action="{% url 'refprofile' %}" method="post">
+            {% csrf_token %}
+            {{ form |crispy}}<br/>
+            <input type="submit" class="btn btn-primary" value="Create Profile">
+        </form>
+    </div>
+{% endblock %}

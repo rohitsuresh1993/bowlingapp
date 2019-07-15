@@ -1,0 +1,15 @@
+{% extends 'base_layout_bowler.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <form class="site-form" action="{% url 'blrlogin' %}" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}<br/>
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <input type="submit" class="btn btn-primary" value="Login">&nbsp
+        <a href="{% url 'bsup' %}"> Register as bowler </a>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base_layout_league.html' %}
+
+{% block content %}
+    <form>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <div class="form-group required">
+                        Name on Card
+                        <label for="nameOnCard" class="sr-only">Name on Card</label>
+                        <input type="text" id="nameOnCard" class="form-control" required autofocus>
+                    </div>
+                    Credit Card Number
+                        <label for="creditCard" class="sr-only">Credit Card</label>
+                        <input type="text" autocomplete="cc-number" id="creditCard" class="form-control card-number" placeholder="XXXX-XXXX-XXXX-XXXX" maxlength="16" minlength="16" required>
+                    CVC
+                        <label for="cvc" class="sr-only">CVV</label>
+                        <input type="text" id="cvc" autocomplete="cc-csc" class="form-control" placeholder="ex.123" maxlength="3" minlength="3" required>
+                    Expiration
+                        <label for="expiration" class="sr-only">Expration</label>
+                        <input type="tel" autocomplete="cc-exp" id="expiration" class="form-control" placeholder="MM/YY" required>
+
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Save my card
+                        </label><br>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Confirm Payment</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
